@@ -15,17 +15,18 @@ const SweetCard = ({ sweet, onPurchase }) => {
         Stock: {sweet.quantity}
       </p>
 
-      <button
-        disabled={sweet.quantity === 0}
-        onClick={() => onPurchase(sweet.id)}
-        className={`mt-auto py-2 rounded-lg text-sm font-semibold ${
-          sweet.quantity === 0
-            ? "bg-gray-300 cursor-not-allowed"
-            : "bg-green-500 text-white hover:bg-green-600"
-        }`}
-      >
-        {sweet.quantity === 0 ? "Out of Stock" : "Purchase"}
-      </button>
+     <button
+  onClick={() => onPurchase(sweet._id)}
+  disabled={sweet.quantity === 0}
+  className={`px-4 py-2 rounded-lg text-white ${
+    sweet.quantity === 0
+      ? "bg-gray-400 cursor-not-allowed"
+      : "bg-pink-600 hover:bg-pink-700"
+  }`}
+>
+  {sweet.quantity === 0 ? "Out of Stock" : "Purchase"}
+</button>
+
     </div>
   );
 };

@@ -29,14 +29,24 @@ const Dashboard = () => {
   const handlePurchase = async (id) => {
   try {
     await api.post(`/sweets/${id}/purchase`);
+
+    // ✅ Optimistic UI update
+    setSweets((prev) =>
+      prev.map((s) =>
+        s._id === id
+          ? { ...s, quantity: s.quantity - 1 }
+          : s
+      )
+    );
+
     toast.success("Sweet purchased 🍬");
-    fetchSweets();
   } catch (err) {
     const msg =
       err.response?.data?.message || "Purchase failed";
     toast.error(msg);
   }
 };
+
 
 
   const visibleSweets = sweets.filter(
