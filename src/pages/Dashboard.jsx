@@ -27,14 +27,17 @@ const Dashboard = () => {
 
   // 🛒 PURCHASE SWEET
   const handlePurchase = async (id) => {
-    try {
-      await api.post(`/sweets/${id}/purchase`);
-      fetchSweets(); // refresh list
-      toast.success("Sweet purchased 🍬");
-    } catch {
-      toast.error("Out of stock");
-    }
-  };
+  try {
+    await api.post(`/sweets/${id}/purchase`);
+    toast.success("Sweet purchased 🍬");
+    fetchSweets();
+  } catch (err) {
+    const msg =
+      err.response?.data?.message || "Purchase failed";
+    toast.error(msg);
+  }
+};
+
 
   const visibleSweets = sweets.filter(
     (s) =>
