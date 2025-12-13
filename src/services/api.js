@@ -1,7 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://sweet-shop-management-system-backend-4.onrender.com/api",
+  baseURL: "https://sweet-shop-management-system-backend-5.onrender.com/api",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  withCredentials: false, // 🔥 MUST be false
 });
 
 api.interceptors.request.use((config) => {
